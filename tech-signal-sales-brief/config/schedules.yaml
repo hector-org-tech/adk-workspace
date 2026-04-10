@@ -1,0 +1,71 @@
+# ──────────────────────────────────────────────────────────────────────
+# Batch Job Schedule Configuration
+# ──────────────────────────────────────────────────────────────────────
+# Each day maps to a specific analysis focus area and search profiles.
+# The batch job reads today's schedule and runs the full pipeline.
+#
+# Override the day with env var: SCHEDULE_DAY=monday
+# Override the prompt with env var: SCHEDULE_PROMPT="your custom prompt"
+# ──────────────────────────────────────────────────────────────────────
+
+defaults:
+  recipients:
+    - "hector@cloudwerx.tech"
+  report_title: "Tech Signal Intelligence Report"
+
+schedules:
+  monday:
+    name: "Competitive Intelligence — GCP vs AWS"
+    prompt: >
+      Analyze the latest developer signals comparing Google Cloud and AWS services
+      for enterprise workloads. Focus on migration pain points, pricing frustrations,
+      feature gaps, and areas where developers are actively evaluating alternatives.
+      Highlight signals that indicate sales opportunities for Google Cloud.
+    profiles:
+      - "gcp_vs_aws"
+      - "infrastructure"
+
+  tuesday:
+    name: "Data & Analytics Trends"
+    prompt: >
+      Analyze developer pain points and emerging trends around BigQuery, Redshift,
+      Snowflake, and modern data stack tools. Focus on performance issues, cost
+      optimization challenges, migration blockers, and new feature adoption.
+      Identify opportunities for BigQuery and Looker positioning.
+    profiles:
+      - "data_analytics"
+
+  wednesday:
+    name: "AI/ML & Agents"
+    prompt: >
+      Analyze developer signals around building production AI systems including
+      Vertex AI, Gemini API, AI agents, Bedrock, and Azure AI. Focus on agent
+      frameworks, model fine-tuning challenges, RAG implementations, and MLOps
+      pain points. Highlight where Google Cloud AI has competitive advantages.
+    profiles:
+      - "ai_ml"
+
+  thursday:
+    name: "Infrastructure & Modernization"
+    prompt: >
+      Analyze developer challenges with cloud infrastructure including containers,
+      serverless, Kubernetes, networking, and CI/CD pipelines across GCP, AWS,
+      and Azure. Focus on Cloud Run, GKE, Lambda, and ECS adoption friction.
+      Identify patterns that indicate modernization or migration opportunities.
+    profiles:
+      - "infrastructure"
+      - "gcp_general"
+
+  friday:
+    name: "Weekly Roundup — All Signals"
+    prompt: >
+      Produce a comprehensive weekly roundup of the most impactful developer
+      signals across all Google Cloud service areas. Prioritize signals with
+      the highest engagement and commercial relevance. Summarize the top 5
+      themes of the week with actionable recommendations for sales, leadership,
+      and engineering teams.
+    profiles:
+      - "gcp_general"
+      - "data_analytics"
+      - "ai_ml"
+      - "infrastructure"
